@@ -2,8 +2,8 @@
 
 This repository describes a capsid-module.
 
-- A capsid module should specify capsid dependency as a **peer dependency**
-- A capsid module should provide register function of components
+- A capsid module should specify capsid dependency as a **peer dependency**.
+- A capsid module should provide **register function(s) of components**.
   - A register function of a component should take the name of the component as a parameter.
   - A register function of a component may have the default value for name parameter.
   - A capsid module shouldn't automatically register the component as a side effect.
