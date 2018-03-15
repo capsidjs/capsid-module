@@ -3,18 +3,28 @@
 This repository describes a capsid-module.
 
 - A capsid module should specify capsid dependency as a **peer dependency**.
-- A capsid module should provide **register function(s) of components**.
-  - A register function of a component should take the name of the component as a parameter.
-  - A register function of a component may have the default value for name parameter.
-  - A capsid module shouldn't automatically register the component as a side effect.
-  - (The user of the module should be able to choose the name of the component.)
-- A register function of a component should take `capsid` module as a parameter.
-  - A capsid module shouldn't require('capsid') directly in its source code.
+- A capsid module should expose **install function**.
+- The install function should have the following signature
+
+```js
+install(capsid, options)
+```
+
+Where `capsid` is the capsid module and options are the object of arbitrary shape.
+
+- The install function may define a component using the given `capsid.def` method.
+- If the install function defines any component, then the name of them should be configurable through `options`. (It can have default names for components.)
+- A capsid module shouldn't require('capsid') directly in its source code. (Use the injected capsid object)
+- A capsid module should document the available options and their default values.
+
 
 A typical module structure looks like the below:
 
 ```js
-module.exports = (capsid, name = 'my-module') => {
+exports.install = (capsid, options) => {
+
+  const name = options.name || 'my-capsid-component'
+
   /**
    * MyComponent is responsible for ...
    */
@@ -38,4 +48,23 @@ module.exports = (capsid, name = 'my-module') => {
 }
 ```
 
+# Usage of capsid-module
+
+The consumer of a capsid-module should call `capsid.install` method:
+
+```js
+const capsid = require('capsid')
+
+capsid.install(require('3rd-party-capsid-module'), options)
+```
+
+The above should install `3rd-party-capsid-module` with the give `options`.
+
+# Example of capsid-module
+
+- [capsid-popper][]
+  - capsid module for [popper.js][]
+
 [capsid]: https://github.com/capsidjs/capsid
+[capsid-popper]: https://github.com/capsidjs/capsid-popper
+[popper.js]: https://popper.js.org
