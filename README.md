@@ -1,6 +1,6 @@
 # [capsid][]-module
 
-This repository describes a capsid-module.
+This repository describes a capsid-module. (3rd party module for [capsid][])
 
 - A capsid module should specify capsid dependency as a **peer dependency**.
 - A capsid module should expose **install function**.
