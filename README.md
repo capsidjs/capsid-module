@@ -3,6 +3,7 @@
 This repository describes a capsid-module. (3rd party module for [capsid][])
 
 - A capsid module should specify capsid dependency as a **peer dependency**.
+- A capsid module should have `capsidmodule` keyword in `keywords` field of its package.json.
 - A capsid module should expose **install function**.
 - The install function should have the following signature
 
