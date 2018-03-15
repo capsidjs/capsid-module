@@ -10,10 +10,10 @@ This repository describes a capsid-module.
 install(capsid, options)
 ```
 
-Where `capsid` is the capsid module and options are the object of arbitrary shape.
+Where `capsid` is the capsid module and `options` are the object of arbitrary shape.
 
-- The install function may define a component using the given `capsid.def` method.
-- If the install function defines any component, then the name of them should be configurable through `options`. (It can have default names for components.)
+- The install function may define a component (or components) using the given `capsid.def` method.
+- If the install function defines any component, then the names of them should be configurable through `options`. (It can have default names for components.)
 - A capsid module shouldn't require('capsid') directly in its source code. (Use the injected capsid object)
 - A capsid module should document the available options and their default values.
 
